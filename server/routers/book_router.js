@@ -6,9 +6,11 @@ const router = express.Router();
 const bookServise = require("../services/book_service.js");
 
 // 도서 전체 조회: URI, METHOD
-router.get(`books`, (req, res) => {
+router.get(`books`, async (req, res) => {
   // 제공할 서비스 실행
   // 결과 반환
+  let bookList = await bookServise.findAll().catch((err) => console.log(err));
+  res.send(bookList);
 });
 
 // 도서 상세 조회
